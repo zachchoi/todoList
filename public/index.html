@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <title>Todo List</title>
+  </head>
+  <body ng-app="todoListApp">
+    <div ng-controller="mainCtrl">
+    <!-- navbar -->
+    <nav class="navbar navbar-light bg-faded navbar-fixed-top">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <a ng-click="newTodo()" class="nav-link" href="#">New</a>
+          </li>
+          <li class="nav-item">
+            <a ng-click="saveTodos()" class="nav-link" href="#">Save</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /navbar -->
+
+    <!-- jumbotron -->
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container text-sm-center p-t-3">
+        <h1 class="display-5 m-b-1">Todo List</h1>
+        <p class="lead">Turn your browser into the ultimate project manager</p>
+      </div>
+    </div>
+    <!-- /jumbotron -->
+
+    <!-- list -->
+    <div class="container" ng-repeat="todo in todos | orderBy: 'completed'" ng-init="todo.completed-false">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <input ng-model="todo.completed" ng-click="todo.edited = true" class="m-r-1" type="checkbox">
+          <label ng-hide="editing" ng-click="editing=true">{{todo.name}}</label>
+          <input ng-show="editing" ng-change="todo.edited = true" ng-blur="editing = false" ng-model="todo.name" type="text">
+          <a class="pull-xs-right" ng-click="deleteTodo(todo, $index)" href="#">Delete</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /list -->
+    </div>
+
+
+
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services.js"></script>
+  </body>
+</html>
